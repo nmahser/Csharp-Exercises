@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+
 
 namespace InterviewQuestions
 {
@@ -19,6 +21,12 @@ namespace InterviewQuestions
             //MinMaxSum()
             int[] arr = { 4, 1, 9, 3, 2, 10, 8, 6, 5, 7 };
             MinMaxSum(arr);
+
+
+            //LargestUniqueNumber()
+            int[] A = { 5, 7, 3, 9, 4, 9, 8, 3, 1 };
+            Console.WriteLine("Largest integer occuring once = {0}\n", LargestUniqueNumber(A));
+
 
         }
 
@@ -158,6 +166,79 @@ namespace InterviewQuestions
 
 
         }
+
+
+        /*  Input: [5,7,3,9,4,9,8,3,1]
+        Output: 8
+        Explanation: 
+        The maximum integer in the array is 9 but it is repeated. The number 8 occurs only once, so it's the answer.*/
+
+
+        public static int LargestUniqueNumber(int[] A)
+        {
+            try
+            {
+                //List to save dublicate values
+                var dublicates = new List<int>();
+                int largestUnique;
+
+                //Create dict and count occurence of each element in the given array
+                Dictionary<int, int> dict = new Dictionary<int, int>();
+
+                foreach (int element in A)
+                {
+                    if (dict.ContainsKey(element))
+                    {
+                        dict[element] = dict[element] + 1;
+                    }
+                    else
+                    {
+                        dict[element] = 1;
+                    }
+                }
+
+                // if there is all non unique 
+                if(!dict.ContainsValue(1))
+                {
+                    return -1;
+                }
+
+                // add dublicates to the dict
+                foreach(var val in dict)
+                {
+                    if(val.Value > 1)
+                    {
+                        dublicates.Add(val.Key);
+                    }
+                }
+
+                //Remove dublicate keys
+                dublicates.ForEach(k => dict.Remove(k));
+
+                //Get the largestUnique value
+                largestUnique = dict.Keys.Max();
+
+                return largestUnique;
+
+
+
+
+
+
+
+            }
+
+
+            catch
+            {
+                Console.WriteLine("LargestUniqueNumber()");
+            }
+
+            return 0;
+
+
+        }
+
 
 
 

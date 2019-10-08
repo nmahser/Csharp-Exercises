@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+
 
 /*The following code is written by cedanie2*/
 
@@ -7,10 +10,49 @@ namespace StringManipulation
     class Program
     {
         static void Main(string[] args)
-        {
+        { 
             Console.Write("Type a string and press Enter: ");
             string input = Console.ReadLine();
 
+
+            Console.WriteLine(input.TrimEnd(','));
+            Console.WriteLine(input.Trim(','));
+            Console.WriteLine(input.Replace(",",""));
+            Console.WriteLine(input.Split(","));
+
+            int[] arr1 = { 1, 2, 3, 4 };
+            int[] arr2 = { 1, 2, 4, 5, 6, 7 };
+
+            HashSet<int> hs = new HashSet<int>();
+
+            
+            foreach (int el in arr1)
+            {
+                hs.Add(el);
+            }
+            for (int i = 0; i < arr2.Length; i++)
+            {
+                if (hs.Contains(arr2[i]))
+                {
+                    hs.Add(i);
+                }
+            }
+            
+            foreach(int el in hs)
+            {
+                Console.WriteLine(el);
+            }
+
+            String str = "Geeks, For Geeks";
+
+            String[] words = str.Split(' ');
+            foreach(string el in words)
+            {
+                Console.WriteLine(el);
+            }
+
+
+            /*
             // Define Substring position and length
             int get_substring = 2;
             int get_length = 3;
@@ -59,7 +101,7 @@ namespace StringManipulation
             string make_row3 = "Carl\t\tA\t\tDaniel\r\n_________________________________________";
             Console.WriteLine(make_row1);
             Console.WriteLine(make_row2);
-            Console.WriteLine(make_row3);
+            Console.WriteLine(make_row3); */
         }
     }
 }
